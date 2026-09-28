@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: feedback-relay
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: INGEST_KEY
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: MAX_BODY_BYTES
+        value: "12582912"
